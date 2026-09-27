@@ -4,7 +4,7 @@
 const WIN_Z = 0;  // default graphics window z coord in world space
 const WIN_LEFT = 0; const WIN_RIGHT = 1;  // default left and right x coords in world space
 const WIN_BOTTOM = 0; const WIN_TOP = 1;  // default top and bottom y coords in world space
-const INPUT_TRIANGLES_URL = "https://github.com/napoli2005/exercise5/edit/async/triangles.json"; // triangles file loc
+const INPUT_TRIANGLES_URL = "https://raw.githubusercontent.com/NCSUCGClassPrivate/exercise5/async/triangles.json"; // triangles file loc
 const INPUT_ELLIPSOIDS_URL = "https://raw.githubusercontent.com/NCSUCGClassPrivate/exercise5/async/ellipsoids.json"; // ellipsoids file loc
 var Eye = new vec4.fromValues(0.5,0.5,-0.5,1.0); // default eye position in world space
 
@@ -108,6 +108,24 @@ function loadTriangles() {
     var inputTriangles = getJSONFile(INPUT_TRIANGLES_URL,"triangles");
 
     if (inputTriangles != String.null) { 
+        inputTriangles[0].material.diffuse = [0.2, 0.7, 0.8];
+        inputTriangles[0].vertices = [
+            [0.05, 0.6, 0.75],
+            [0.25, 0.9, 0.75],
+            [0.45, 0.6, 0.75]
+        ];
+
+
+        inputTriangles[1].material.diffuse = [0.6, 0.2, 0.7];
+
+        inputTriangles[1].vertices = [
+            [0.15, 0.15, 0.75],
+            [0.40, 0.55, 0.75],
+            [0.65, 0.15, 0.75]
+        ];
+
+        inputTriangles[1].triangles = [[0, 1, 2]]; 
+        
         var whichSetVert; // index of vertex in current triangle set
         var whichSetTri; // index of triangle in current triangle set
         var coordArray = []; // 1D array of vertex coords for WebGL
